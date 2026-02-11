@@ -48,7 +48,7 @@ li{
             font-size: 16px;
             font-weight: 600;
             white-space: nowrap;
-            font-family: 'Palanquin Dark', sans-serif;
+            font-family: 'Jomhuria', sans-serif;
         }
     }
     .header__menu{
@@ -74,7 +74,7 @@ li{
         .header__input__search{
             width: 100%;
             padding-left: 40px;
-            height: 40px;
+            height: 30px;
             border: 1px solid #2c3e50;
         }
         .icon__search{
@@ -82,8 +82,8 @@ li{
             left: 10px;
             top: 50%;
             transform: translateY(-50%);
-            width: 16px;
-            height: 16px;
+            width: 12px;
+            height: 12px;
         }
     }
     .header__cart{
