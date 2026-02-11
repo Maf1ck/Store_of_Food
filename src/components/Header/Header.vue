@@ -1,12 +1,12 @@
-<script>
+<script lang="ts" setup>
+import SearchInput from "@/components/SearchInput/SearchInput.vue";
 </script>
 
 <template lang="pug">
     .header
-        .header_wrapper
+        .header__wr
             .header__logo
-                img.icon__logo(src="@/assets/logo.svg" width="32" height="32" alt="Logo")
-                h2.header__title Green Grocer
+                img.header__logo-icon(src="@/assets/logo.svg" width="150" height="37" alt="Logo")
             .header__menu
                 ul.header__list
                     li.header__item
@@ -17,84 +17,55 @@
                         a.header__link(href="#") Top Category
                     li.header__item
                         a.header__link(href="#") Best Sales
-            .header__search
-                img.icon__search(src="@/assets/search.svg" width="24" height="24" alt="Search")
-                input.header__input__search(type="text" placeholder="Search")
+            SearchInput
             .header__cart
-                button.header__btn__cart
-                    img.icon__cart(src="@/assets/cart.svg" width="24" height="24" alt="Cart")
+                button.header__cart--btn
+                    img.header__cart-icon(src="@/assets/cart.svg" width="24" height="24" alt="Cart")
 
                 
                     
 
 </template>
 
-<style lang="scss">
-li{
-    list-style: none;
-    text-decoration: none;
-}
-.header_wrapper{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 50px;
-    gap: 50px;
-    .header__logo{
+<style lang="scss" scoped>
+.header{
+    &__wr{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 50px;
+        gap: 50px;
+    }
+    &__logo{
         display: flex;
         align-items: center;
         gap: 10px;
-        .header__title{
-            font-size: 16px;
-            font-weight: 600;
-            white-space: nowrap;
-            font-family: 'Jomhuria', sans-serif;
-        }
     }
-    .header__menu{
+    &__menu{
         display: flex;
         gap: 20px;
-        .header__list{
-            display: flex;
-            gap: 20px;
-            .header__item{
-                .header__link{
-                    text-decoration: none;
-                    color: #2c3e50;
-                    white-space: nowrap;
-                    font-size: 16px;
-                    font-weight: 600;
-                    font-family: 'Palanquin Dark', sans-serif;
-                }
-            }
-        }
     }
-    .header__search{
-        position: relative;
-        .header__input__search{
-            width: 100%;
-            padding-left: 40px;
-            height: 30px;
-            border: 1px solid #2c3e50;
-        }
-        .icon__search{
-            position: absolute;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 12px;
-            height: 12px;
-        }
+    &__list{
+        display: flex;
+        gap: 20px;
     }
-    .header__cart{
-        .header__btn__cart{
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
+    &__item{
+        list-style: none;
+        text-decoration: none;
     }
-
-
+    &__link{
+        text-decoration: none;
+        color: #2c3e50;
+        white-space: nowrap;
+        font-size: 16px;
+        font-weight: 600;
+        font-family: 'Palanquin Dark', sans-serif;
+    }
+    &__cart--btn{
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
 }
 </style>
 
