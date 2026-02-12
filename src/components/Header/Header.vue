@@ -33,7 +33,9 @@ import SearchInput from "@/components/SearchInput/SearchInput.vue";
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 0 50px;
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 0 50px;
         gap: 50px;
     }
     &__logo{
