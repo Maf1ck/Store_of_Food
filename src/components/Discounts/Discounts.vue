@@ -45,6 +45,10 @@
 </template>
 
 <style lang="scss">
+*{
+    margin: 0;
+    padding: 0;
+}
 .discounts {
     display: flex;
     flex-direction: column;
@@ -75,6 +79,7 @@
     &__item {
         display: flex;
         align-items: center;
+        
         gap: 12px;
     }
 
@@ -107,118 +112,119 @@
     
     &__banners {
         display: flex;
-        
+        justify-content: center;
+        max-height:335px;
+        align-items: center;
         gap: 20px;
         width: 100%;
-
-    &--image {
-        display: flex;
-        align-items: center;
-        width: 45%;
-        &--img{
-            max-width: 350px;
-            max-height: 200px;
-        }   
-    }
-
-        &--sale,
-        &--fresh {
-            border-radius: 10px;
-            overflow: hidden;
-            display: flex;
-            position: relative;
-        }
         &--sale {
-            background-color: #dcf0c3;
-            max-height: 350px;
+            display: flex;
             align-items: center;
-            padding: 30px 50px;
-            max-width: 900px;
-
-            &__text {
+            border-radius: 10px;
+            justify-content: center;
+            background:rgba(222, 241, 189, 1);
+            gap: 20px;
+            width: 100%;
+            &__text{
                 display: flex;
                 flex-direction: column;
-                align-items: flex-start;
-                z-index: 1;
-                margin-left: auto;
-
-                &--wr {
-                    display: flex;
-                    flex-direction: column;
-                }
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                gap: 20px;
+                margin: 20px;
             }
-
-            &__title {
-                font-family: 'Palanquin Dark', sans-serif;
-                font-size: 16px;
-                font-weight: 400;
-                margin: 0 0 15px 0;
-            }
-
-            &__text--title {
-                font-family: 'Palanquin Dark', sans-serif;
-                font-size: 30px;
-                font-weight: 800;
-                color: #517907;
-                margin: 0;
-            }
-
-            &__text--text {
-                font-family: 'Palanquin Dark', sans-serif;
-                font-size: 48px;
-                font-weight: 800;
-                margin: 0;
-            }
-
-            &__text--percent {
-                font-family: 'Palanquin Dark', sans-serif;
-                font-size: 48px;
-                font-weight: 800;
-                margin: 0 0 20px 0;
-            }
-
-            &__btn {
+            &__text--wr{
                 display: flex;
                 align-items: center;
-                gap: 10px;
-                background-color: #fff;
-                border: 1px solid #333;
-                padding: 12px 25px;
-                font-family: 'Palanquin Dark', sans-serif;
+                flex-direction: column;
+                justify-content: center;
+                width: 100%;
+                gap: 5px;
+                
+            }
+
+            &__title{
+                margin: 10px;
+                font-size: 24px;
+                white-space: nowrap;
                 font-weight: 600;
-                font-size: 16px;
-                cursor: pointer;
-
-                &--img {
-                    width: 14px;
-                    height: 14px;
-                }
-            }
-
-        }
-
-        &--fresh {
-            background-color: #fff9d9;
-            max-height: 350px;
-            max-width: 300px;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            padding: 40px 20px 0 20px;
-
-            &__title {
                 font-family: 'Palanquin Dark', sans-serif;
-                font-size: 38px;
-                font-weight: 800;
-                text-align: center;
-                margin: 0;
             }
-
-            &__img {
-                max-width: 100%;
-                height: auto;
+            &__text--title{
+                color: rgba(81, 121, 7, 1);
+                font-size: 24px;
+                font-weight: 600;
+                font-family: 'Palanquin Dark', sans-serif;
+                
+            }
+            &__text--text{
+                margin: 0;
+                font-size: 30px;
+                font-weight: 600;
+                font-family: 'Palanquin', sans-serif;
+                
+            }
+            &__text--percent{
+                margin: 0;
+                font-size: 30px;
+                font-weight: 600;
+                font-family: 'Palanquin', sans-serif;
+                
+            }
+            &__btn{
+                display: flex;
+                margin-top: 20px;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                width: 100%;
+                height: 50px;
+                background: #ffffff;
+                border: 1px solid black;
+                color: black    ;
+                font-size: 16px;
+                font-weight: 600;
+                font-family: 'Palanquin', sans-serif;
+                cursor: pointer;
+                
             }
         }
+        &--image{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            margin: 50px;
+            &--img{
+                max-width: 400px;
+                max-height: 270px;
+            }
+        }
+        &--fresh{
+            display: flex;
+            align-items: center;
+            border-radius: 10px;
+            flex-direction: column;
+            justify-content: center;
+            white-space: nowrap;    
+            background:rgba(253, 248, 208, 1);
+            gap: 20px;
+            width: 100%;
+            &__title{
+                margin: 15px;
+                font-size: 24px;
+                font-weight: 600;
+                font-family: 'Palanquin', sans-serif;
+            }
+            &__img{
+                max-width: 400px;
+                max-height: 270px;
+            }
+        }
+
     }
+
 }
 </style>
