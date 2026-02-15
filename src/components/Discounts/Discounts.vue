@@ -2,34 +2,32 @@
 </script>
 
 <template lang="pug">
-.discounts
-    .discounts__wr
-        .discounts__description
-            ul.discounts__list
-                li.discounts__item
-                    img.discounts__item-icons(src="@/assets/headphones.svg" width="32" height="32" alt="Headphones")
-                    .discounts__item__text--wr
-                        p.discounts__item-title Support 24 h
-                        p.discounts__item-text Dedicated support
-                li.discounts__item
-                    img.discounts__item-icons(src="@/assets/shield.svg" width="32" height="32" alt="Shield")
-                    .discounts__item__text--wr
-                        p.discounts__item-title Secure Payment
-                        p.discounts__item-text ensure your money is safe
-                li.discounts__item
-                    img.discounts__item-icons(src="@/assets/return.svg" width="32" height="32" alt="Return")
-                    .discounts__item__text--wr
-                        p.discounts__item-title Refundable
-                        p.discounts__item-text Damage items can refund it
-                li.discounts__item
-                    img.discounts__item-icons(src="@/assets/archive.svg" width="32" height="32" alt="Shipping")
-                    .discounts__item__text--wr
-                        p.discounts__item-title Free Shipping
-                        p.discounts__item-text Order over 40$
+section.discounts
+    .discounts__description
+        ul.discounts__list
+            li.discounts__item
+                img.discounts__item-icons(src="@/assets/headphones.svg" width="32" height="32" alt="Headphones")
+                .discounts__item__text--wr
+                    p.discounts__item-title Support 24 h
+                    p.discounts__item-text Dedicated support
+            li.discounts__item
+                img.discounts__item-icons(src="@/assets/shield.svg" width="32" height="32" alt="Shield")
+                .discounts__item__text--wr
+                    p.discounts__item-title Secure Payment
+                    p.discounts__item-text ensure your money is safe
+            li.discounts__item
+                img.discounts__item-icons(src="@/assets/return.svg" width="32" height="32" alt="Return")
+                .discounts__item__text--wr
+                    p.discounts__item-title Refundable
+                    p.discounts__item-text Damage items can refund it
+            li.discounts__item
+                img.discounts__item-icons(src="@/assets/archive.svg" width="32" height="32" alt="Shipping")
+                .discounts__item__text--wr
+                    p.discounts__item-title Free Shipping
+                    p.discounts__item-text Order over 40$
     .discounts__banners
         .discounts__banners--sale
-            .discounts__banners--image
-                img(src="@/assets/apple.svg").discounts__banners--image--img
+            img(src="@/assets/apple.svg").discounts__banners--sale-image
             .discounts__banners--sale__text
                 h2.discounts__banners--sale__title SUMMER SALE
                 .discounts__banners--sale__text--wr
@@ -38,17 +36,13 @@
                     h1.discounts__banners--sale__text--percent %100
                     button.discounts__banners--sale__btn
                         span Shop Now
-                        img(src="@/assets/arrow.svg").discounts__banners--sale__btn--img
+                        img(src="@/assets/arrow.svg").discounts__banners--sale__btn--arrow
         .discounts__banners--fresh
             h1.discounts__banners--fresh__title Fresh Delivered Daily
-            img(src="@/assets/cheese.svg").discounts__banners--fresh__img
+            img(src="@/assets/cheese.svg").discounts__banners--fresh__image
 </template>
 
-<style lang="scss">
-*{
-    margin: 0;
-    padding: 0;
-}
+<style lang="scss" scoped>
 .discounts {
     display: flex;
     flex-direction: column;
@@ -58,9 +52,6 @@
     max-width: 1200px;
     margin: 40px auto;
     padding: 0 20px;
-    &__wr {
-        width: 100%;
-    }
 
     &__description {
         width: 100%;
@@ -113,7 +104,6 @@
     &__banners {
         display: flex;
         justify-content: center;
-        max-height:335px;
         align-items: center;
         gap: 20px;
         width: 100%;
@@ -124,7 +114,16 @@
             justify-content: center;
             background:rgba(222, 241, 189, 1);
             gap: 20px;
-            width: 100%;
+            width: 70%;
+            &-image    {
+                width: 400px;
+                height: 270px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 50px;
+
+            }
             &__text{
                 display: flex;
                 flex-direction: column;
@@ -132,7 +131,6 @@
                 justify-content: center;
                 width: 100%;
                 gap: 20px;
-                margin: 20px;
             }
             &__text--wr{
                 display: flex;
@@ -166,7 +164,6 @@
                 
             }
             &__text--percent{
-                margin: 0;
                 font-size: 30px;
                 font-weight: 600;
                 font-family: 'Palanquin', sans-serif;
@@ -178,53 +175,44 @@
                 align-items: center;
                 justify-content: center;
                 gap: 10px;
-                width: 100%;
-                height: 50px;
                 background: #ffffff;
                 border: 1px solid black;
                 color: black    ;
                 font-size: 16px;
+                padding: 10px 20px;
                 font-weight: 600;
                 font-family: 'Palanquin', sans-serif;
                 cursor: pointer;
                 
             }
         }
-        &--image{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-            margin: 50px;
-            &--img{
-                max-width: 400px;
-                max-height: 270px;
-            }
-        }
+        
         &--fresh{
             display: flex;
             align-items: center;
-            border-radius: 10px;
             flex-direction: column;
+            border-radius: 10px;
             justify-content: center;
             white-space: nowrap;    
             background:rgba(253, 248, 208, 1);
             gap: 20px;
-            width: 100%;
+            width: 30%;
+            height: 370px;
+            overflow: hidden;
             &__title{
                 margin: 15px;
                 font-size: 24px;
                 font-weight: 600;
+                overflow: hidden;
                 font-family: 'Palanquin', sans-serif;
             }
-            &__img{
-                max-width: 400px;
-                max-height: 270px;
+            &__image{
+                overflow: hidden;
+                width: 400px;
+                height: 270px;
             }
         }
 
     }
-
 }
 </style>
