@@ -9,15 +9,17 @@
                 h1.aboutus__description-wr-title Your Ultimate Online 
                     span.aboutus__description-wr-span Grocery
                 p.aboutus__description-wr-text Experience grocery shopping and swift home delivery with our wide range of fresh produce and essentials
-                button.aboutus__description-wr-btn Shop Now
-            .aboutus__image
-                img.aboutus__image-img(src="@/assets/about-us.svg" alt="About Us")
+                button.aboutus__description-wr-btn Learn More
+            .aboutus__image-wr
+                img.aboutus__image(src="@/assets/about-us.svg" alt="About Us")
         
                 
 </template>
 
 <style lang="scss" scoped>
 .aboutus{
+    min-height: 100vh;
+    margin-bottom:50px;
     background: linear-gradient(to bottom, #FCFCF7 , #F5EEAD);
     &__content{
         display: flex;
@@ -25,8 +27,7 @@
         flex-direction: row;
         max-width: 1200px;
         margin: 0 auto;
-        margin-top: 60px;
-        padding: 0 50px;
+        padding: 200px 50px;
         gap: 120px;
     }
     &__description-wr{
@@ -39,6 +40,7 @@
         font-weight: 600;
         color: #000;
         max-width: 450px;
+        margin-bottom: 20px;
         font-family: 'Palanquin Dark', sans-serif;
     }
     &__description-wr-span{
@@ -46,6 +48,7 @@
     }
     &__description-wr-text{
         font-size: 20px;
+        margin-bottom: 20px;
         color: #555;
         font-family: 'Open Sans', sans-serif;
         max-width: 480px;
@@ -59,10 +62,10 @@
         font-weight: 600;
         cursor: pointer;
     }
-    &__image{
+    &__image-wr{
         height:100vh;
     }
-    &__image-img{
+    &__image{
         width: 500px;
 
         height: auto;
