@@ -7,6 +7,7 @@
 <style lang="scss" scoped>
 .header__search{
     position: relative;
+    width: 350px; 
     &-icon{
         position: absolute;
         left: 10px;
@@ -18,8 +19,9 @@
     &-input{
         width: 100%;
         padding-left: 40px;
-        height: 30px;
+        height: 40px;   
         border: 1px solid #2c3e50;
+        box-sizing: border-box; 
     }
 }
 </style>
