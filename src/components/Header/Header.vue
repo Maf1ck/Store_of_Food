@@ -26,12 +26,15 @@ import SearchInput from "@/components/SearchInput/SearchInput.vue";
 
 <style lang="scss" scoped>
 .header {
-    position: sticky;
+    position: absolute;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 1000;
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
+    background: transparent;
     display: flex;
     justify-content: space-between;
     align-items: center;
