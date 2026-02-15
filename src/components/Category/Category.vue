@@ -1,55 +1,52 @@
 <script setup lang="ts">
 </script>
 <template lang="pug">
-    .category
-        .category__wr
-            .category__header
-                h2.category__title Top Category
-                .category__nav
-                    button.category__nav-btn.category__nav-btn--prev
-                        img(src="@/assets/arrow_small.svg")
-                    button.category__nav-btn.category__nav-btn--next
-                        img(src="@/assets/arrow_small.svg")
+    section.category
+        .category__header
+            h2.category__title Top Category
+            .category__nav
+                button.category__nav-btn.category__nav-btn--prev
+                    img(src="@/assets/arrow_small.svg")
+                button.category__nav-btn.category__nav-btn--next
+                    img(src="@/assets/arrow_small.svg")
                 
-            .category__slider
-                ul.category__list
-                    li.category__item
-                        .category__item-category  
-                            img.category__item-img(src="@/assets/fruits.svg")
-                            p.category__item-title Fruits
-                    li.category__item
-                        .category__item-category  
-                            img.category__item-img(src="@/assets/vegetables.svg")
-                            p.category__item-title Vegetables
-                    li.category__item
-                        .category__item-category  
-                            img.category__item-img(src="@/assets/meat.svg")
-                            p.category__item-title Meat
-                    li.category__item
-                        .category__item-category  
-                            img.category__item-img(src="@/assets/snacks.svg")
-                            p.category__item-title Snacks
-                    li.category__item
-                        .category__item-category    
-                            img.category__item-img(src="@/assets/milk.svg")
-                            p.category__item-title Milk
-            .category__discription
-                .category__discription-image
-                    img.category__discription-image-img(src="@/assets/box.png")
-                .category__discription-text
-                    h1.category__discription-text-title 
-                        | ECO
-                        span.category__discription-text-title-span -Friendly
-                    p.category__discription-text-p Discover a vibrant array of locally sourced and eco-friendly products on our grocery web store, connecting you with sustainable choices that support both the community and the planet.
-                    button.category__discription-text-button Learn More
+        .category__slider
+            ul.category__list
+                li.category__item
+                    .category__item-category  
+                        img.category__item-img(src="@/assets/fruits.svg")
+                        p.category__item-title Fruits
+                li.category__item
+                    .category__item-category  
+                        img.category__item-img(src="@/assets/vegetables.svg")
+                        p.category__item-title Vegetables
+                li.category__item
+                    .category__item-category  
+                        img.category__item-img(src="@/assets/meat.svg")
+                        p.category__item-title Meat
+                li.category__item
+                    .category__item-category  
+                        img.category__item-img(src="@/assets/snacks.svg")
+                        p.category__item-title Snacks
+                li.category__item
+                    .category__item-category    
+                        img.category__item-img(src="@/assets/milk.svg")
+                        p.category__item-title Milk
+        .category__discription
+            .category__discription-image
+                img.category__discription-image-img(src="@/assets/box.png")
+            .category__discription-text
+                h1.category__discription-text-title 
+                    | ECO
+                    span.category__discription-text-title-span -Friendly
+                p.category__discription-text-p Discover a vibrant array of locally sourced and eco-friendly products on our grocery web store, connecting you with sustainable choices that support both the community and the planet.
+                button.category__discription-text-button Learn More
 </template>
 <style scoped lang="scss">
 .category{
-    &__wr{
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 40px 0;
-    }
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 0;
     &__header {
         display: flex;
         justify-content: space-between;
@@ -163,20 +160,18 @@
     &__discription-text-button{
         margin-top: 20px;
         padding: 12px 30px;
-        background-color: #5a8c2e;
         color: white;
         border: none;
         border-radius: 5px;
         font-size: 16px;
         font-weight: 600;
         cursor: pointer;
-        transition: background-color 0.3s;
     }
     &__discription-text-button{
         max-width: 200px;
         background-color: #ffff;
         color: black;
-        border: 1px solid #5a8c2e;
+        border: 1px solid black;
         padding: 12px 30px;
         cursor: pointer;
     }

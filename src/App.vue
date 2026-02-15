@@ -6,7 +6,6 @@ import Category from "./components/Category/Category.vue";
 
 <template>
   <Header/>
-  <Discounts/>
   <Category/>
 </template>
 
