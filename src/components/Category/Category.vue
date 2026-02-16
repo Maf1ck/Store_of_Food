@@ -14,27 +14,27 @@
             ul.category__list
                 li.category__item
                     .category__item-category  
-                        img.category__item-img(src="@/assets/fruits.svg")
+                        img.category__item-image(src="@/assets/fruits.svg")
                         p.category__item-title Fruits
                 li.category__item
                     .category__item-category  
-                        img.category__item-img(src="@/assets/vegetables.svg")
+                        img.category__item-image(src="@/assets/vegetables.svg")
                         p.category__item-title Vegetables
                 li.category__item
                     .category__item-category  
-                        img.category__item-img(src="@/assets/meat.svg")
+                        img.category__item-image(src="@/assets/meat.svg")
                         p.category__item-title Meat
                 li.category__item
                     .category__item-category  
-                        img.category__item-img(src="@/assets/snacks.svg")
+                        img.category__item-image(src="@/assets/snacks.svg")
                         p.category__item-title Snacks
                 li.category__item
                     .category__item-category    
-                        img.category__item-img(src="@/assets/milk.svg")
+                        img.category__item-image(src="@/assets/milk.svg")
                         p.category__item-title Milk
         .category__discription
-            .category__discription-image
-                img.category__discription-image-img(src="@/assets/box.png")
+            .category__discription-image__wr
+                img.category__discription-image(src="@/assets/box.png")
             .category__discription-text
                 h1.category__discription-text-title 
                     | ECO
@@ -128,7 +128,7 @@
         border-radius: 10px;
         margin-top: 50px;
             }
-    &__discription-image{
+    &__discription-image__wr{
         display: flex;
         justify-content: center;
         align-items: center;
@@ -137,6 +137,7 @@
     &__discription-text{
         display: flex;
         flex-direction: column;
+        margin-right: 50px;
     }
     &__discription-text-title{
         position: relative;
