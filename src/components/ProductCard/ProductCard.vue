@@ -89,7 +89,6 @@ const formatPrice = (price: number) => {
         font-size: 18px;
         font-weight: 500;
         color: #333;
-        margin: 0;
     }
 
     &__price {
@@ -97,7 +96,6 @@ const formatPrice = (price: number) => {
         font-size: 20px;
         font-weight: 800;
         color: #000;
-        margin: 0;
     }
 
     &__rating {
