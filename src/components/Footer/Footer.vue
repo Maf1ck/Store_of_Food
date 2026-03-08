@@ -12,9 +12,9 @@ footer.footer
                 p.footer__contact-item Phone : 99988765
                 p.footer__contact-item Email : Greengrocery9@Gmail.Com
             .footer__payment
-                img.footer__payment-icon(src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='32' viewBox='0 0 52 32'%3E%3Crect width='52' height='32' rx='4' fill='%231A1F71'/%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='11' fill='%23fff' letter-spacing='0'%3EVISA%3C/text%3E%3C/svg%3E" alt="Visa")
-                img.footer__payment-icon(src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='32' viewBox='0 0 52 32'%3E%3Crect width='52' height='32' rx='4' fill='%23EB001B'/%3E%3Ccircle cx='20' cy='16' r='10' fill='%23EB001B'/%3E%3Ccircle cx='32' cy='16' r='10' fill='%23F79E1B'/%3E%3Ccircle cx='26' cy='16' r='6' fill='%23FF5F00'/%3E%3C/svg%3E" alt="Mastercard")
-                img.footer__payment-icon(src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='32' viewBox='0 0 52 32'%3E%3Crect width='52' height='32' rx='4' fill='%230061A8'/%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='9' fill='%23fff'%3EMaestro%3C/text%3E%3C/svg%3E" alt="Maestro")
+                img.footer__payment-icon(src="@/assets/visa.svg" width="52" height="32" alt="Visa")
+                img.footer__payment-icon(src="@/assets/mastercard.svg" width="52" height="32" alt="Mastercard")
+                img.footer__payment-icon(src="@/assets/maestro.svg" width="52" height="32" alt="Maestro")
         .footer__col
             h4.footer__col-title SOCIAL MEDIA
             ul.footer__col-list

@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { computed } from 'vue';
+import { ref } from 'vue';
+import Toast from '@/components/Toast/Toast.vue';
 
 const props = defineProps<{
     product: {
@@ -21,6 +22,27 @@ const formatPrice = (price: number) => {
 const getImageUrl = (name: string) => {
     return new URL(`../../assets/${name}`, import.meta.url).href;
 };
+
+const toastVisible = ref(false);
+const toastMessage = ref('');
+let toastTimeout: ReturnType<typeof setTimeout>;
+function showToast(message: string) {
+    toastMessage.value = message;
+    toastVisible.value = true;
+    if (toastTimeout) clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => {
+        toastVisible.value = false;
+    }, 3000);
+}
+function addToCard(product: any) {
+    localStorage.setItem('card', JSON.stringify([...JSON.parse(localStorage.getItem('card') || '[]'), product]));
+    showToast(`${product.title} added to cart!`);
+}
+function addToWishlist(product: any) {
+    localStorage.setItem('wishlist', JSON.stringify([...JSON.parse(localStorage.getItem('wishlist') || '[]'), product]));
+    showToast(`${product.title} added to wishlist!`);
+}
+
 </script>
 
 <template lang="pug">
@@ -39,11 +61,12 @@ const getImageUrl = (name: string) => {
                         alt="star"
                     )
             .product-card__actions
-                button.product-card__btn-cart
+                button.product-card__btn-cart(@click="addToCard(product)")
                     img(src="@/assets/cart.svg" alt="Add to cart")
-                button.product-card__btn-wishlist
+                button.product-card__btn-wishlist(@click="addToWishlist(product)")
                     img(src="@/assets/heart.svg" alt="Add to wishlist")
-            
+    
+    Toast(:visible="toastVisible" :message="toastMessage" type="success")
 </template>
 
 <style lang="scss" scoped>

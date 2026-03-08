@@ -11,6 +11,7 @@ const products = ref([
         price: 9,
         image: 'kiwi.svg',
         rating: 4,
+        type: 'fruit',
     },
     {
         id: 2,
@@ -18,6 +19,7 @@ const products = ref([
         price: 12,
         image: 'banana.svg',
         rating: 3,
+        type: 'fruit',
     },
     {
         id: 3,
@@ -25,6 +27,7 @@ const products = ref([
         price: 13,
         image: 'apple.svg',
         rating: 4,
+        type: 'fruit',
     },
     {
         id: 4,
@@ -32,13 +35,15 @@ const products = ref([
         price: 5,
         image: 'Milk2.svg',
         rating: 5,
+        type: 'drinks',
     },
     {
         id: 5,
         title: 'Water',
-        price: 400,
+        price: 3,
         image: 'water.svg',
         rating: 5,
+        type: 'drinks',
     },
     {
         id: 6,
@@ -64,9 +69,41 @@ const products = ref([
 ])
 
 const items = ref([...products.value]);
+const activeFilter = ref('all');
+
 function showMore() {
-    items.value.push(...products.value);
+    let itemsToAdd = [...products.value];
+    if (activeFilter.value === 'drinks' || activeFilter.value === 'fruit') {
+        itemsToAdd = itemsToAdd.filter(product => product.type === activeFilter.value);
+    }
+    items.value.push(...itemsToAdd);
+    if (activeFilter.value === 'rating') {
+        items.value.sort((a, b) => b.rating - a.rating);
+    } else if (activeFilter.value === 'price') {
+        items.value.sort((a, b) => b.price - a.price);
+    }
 }
+function sortByRating() {
+    items.value.sort((a, b) => b.rating - a.rating);
+    activeFilter.value = 'rating';
+}
+function sortByPrice() {
+    items.value.sort((a, b) => b.price - a.price);
+    activeFilter.value = 'price';
+}
+function sortAll(){
+    items.value = [...products.value];
+    activeFilter.value = 'all';
+}
+function sortDrinks(){
+    items.value = products.value.filter(product => product.type === 'drinks');
+    activeFilter.value = 'drinks';
+}
+function sortFruit(){
+    items.value = products.value.filter(product => product.type === 'fruit');
+    activeFilter.value = 'fruit';
+}
+
 </script>
 
 <template lang="pug">
@@ -77,15 +114,15 @@ section.best-sales
             nav.best-sales__nav
                 ul.best-sales__nav-list
                     li.best-sales__nav-item
-                        a.best-sales__nav-link(href="#") All
+                        a.best-sales__nav-link(href="#" :class="{ active: activeFilter === 'all' }" @click.prevent="sortAll()") All
                     li.best-sales__nav-item
-                        a.best-sales__nav-link.best-sales__nav-link--active(href="#") Top sell
+                        a.best-sales__nav-link(href="#" :class="{ active: activeFilter === 'rating' }" @click.prevent="sortByRating()") Top sell
                     li.best-sales__nav-item
-                        a.best-sales__nav-link(href="#") New
+                        a.best-sales__nav-link(href="#" :class="{ active: activeFilter === 'price' }" @click.prevent="sortByPrice()") Top Price
                     li.best-sales__nav-item
-                        a.best-sales__nav-link(href="#") Vegetables
+                        a.best-sales__nav-link(href="#" :class="{ active: activeFilter === 'drinks' }" @click.prevent="sortDrinks()") Drinks
                     li.best-sales__nav-item
-                        a.best-sales__nav-link(href="#") Fruit
+                        a.best-sales__nav-link(href="#" :class="{ active: activeFilter === 'fruit' }" @click.prevent="sortFruit()") Fruit
         .best-sales__grid
             ProductCard(v-for="(product, idx) in items" :key="idx" :product="product")
         .best-sales__footer
@@ -139,7 +176,7 @@ section.best-sales
             color: #4B7D11;
         }
 
-        &--active {
+        &.active {
             color: #4B7D11;
             font-weight: 700;
         }
