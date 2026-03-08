@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { toasts } from './toastStore.js';
+import { toasts } from './toastStore';
 </script>
 
 <template lang="pug">

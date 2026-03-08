@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue';
-import { showToast } from '@/components/Toast/toastStore.js';
+import { showToast } from '@/components/Toast/toastStore';
 
 const props = defineProps<{
     product: {
