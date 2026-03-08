@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import Toast from '@/components/Toast/Toast.vue';
 
 const props = defineProps<{
@@ -9,8 +9,10 @@ const props = defineProps<{
         price: number;
         image: string;
         rating: number;
+        type?: string;
     }
 }>();
+const isInWishlist = ref(false);
 
 const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -38,9 +40,27 @@ function addToCard(product: any) {
     localStorage.setItem('card', JSON.stringify([...JSON.parse(localStorage.getItem('card') || '[]'), product]));
     showToast(`${product.title} added to cart!`);
 }
-function addToWishlist(product: any) {
-    localStorage.setItem('wishlist', JSON.stringify([...JSON.parse(localStorage.getItem('wishlist') || '[]'), product]));
-    showToast(`${product.title} added to wishlist!`);
+
+onMounted(() => {
+    const list = JSON.parse(localStorage.getItem('wishlist') || '[]');
+    isInWishlist.value = list.some((item: any) => item.id === props.product.id);
+});
+
+function toggleWishlist(product: any) {
+    let list = JSON.parse(localStorage.getItem('wishlist') || '[]');
+    const exists = list.some((item: any) => item.id === product.id);
+
+    if (exists) {
+        list = list.filter((item: any) => item.id !== product.id);
+        localStorage.setItem('wishlist', JSON.stringify(list));
+        isInWishlist.value = false;
+        showToast(`${product.title} removed from wishlist`);
+    } else {
+        list.push(product);
+        localStorage.setItem('wishlist', JSON.stringify(list));
+        isInWishlist.value = true;
+        showToast(`${product.title} added to wishlist!`);
+    }
 }
 
 </script>
@@ -63,8 +83,11 @@ function addToWishlist(product: any) {
             .product-card__actions
                 button.product-card__btn-cart(@click="addToCard(product)")
                     img(src="@/assets/cart.svg" alt="Add to cart")
-                button.product-card__btn-wishlist(@click="addToWishlist(product)")
-                    img(src="@/assets/heart.svg" alt="Add to wishlist")
+                button.product-card__btn-wishlist(
+                    @click="toggleWishlist(product)"
+                    :class="{ 'product-card__btn-wishlist--active': isInWishlist }"
+                )
+                    img(src="@/assets/heart.svg" alt="Toggle wishlist")
     
     Toast(:visible="toastVisible" :message="toastMessage" type="success")
 </template>
@@ -83,8 +106,8 @@ function addToWishlist(product: any) {
     width: 240px;
 
     &:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+        transform: translateY(-1px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     }
 
     &__image-wr {
@@ -168,11 +191,6 @@ function addToWishlist(product: any) {
         cursor: pointer;
         transition: background 0.25s, transform 0.2s;
 
-        &:hover {
-            background: #bdd47a;
-            transform: scale(1.08);
-        }
-
         img {
             width: 20px;
             height: 20px;
@@ -180,11 +198,11 @@ function addToWishlist(product: any) {
     }
 
     &__btn-wishlist {
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 4px;
-        display: flex;
+        background: none; 
+        border: none; 
+        cursor: pointer; 
+        padding: 4px; 
+        display: flex; 
         align-items: center;
         justify-content: center;
         transition: opacity 0.2s, transform 0.2s;
@@ -192,11 +210,13 @@ function addToWishlist(product: any) {
         img {
             width: 18px;
             height: 18px;
+            transition: filter 0.2s;
         }
 
-        &:hover {
-            opacity: 0.6;
-            transform: scale(1.1);
+
+
+        &--active img {
+            filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
         }
     }
 }

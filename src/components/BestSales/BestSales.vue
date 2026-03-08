@@ -66,13 +66,14 @@ const products = ref([
         image: 'Cheese2.svg',
         rating: 5,
     },
-])
-
-const items = ref([...products.value]);
+]);
 const activeFilter = ref('all');
+const items = ref([...products.value]); 
+
+let nextId = 9;
 
 function showMore() {
-    let itemsToAdd = [...products.value];
+    let itemsToAdd = products.value.map(p => ({ ...p, id: nextId++ }));
     if (activeFilter.value === 'drinks' || activeFilter.value === 'fruit') {
         itemsToAdd = itemsToAdd.filter(product => product.type === activeFilter.value);
     }
