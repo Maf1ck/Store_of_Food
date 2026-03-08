@@ -1,7 +1,12 @@
+<script lang="ts" setup>
+import { ref } from 'vue';
+const search = ref('');
+</script>
+
 <template lang="pug">
     .header__search
         img.header__search-icon(src="@/assets/search.svg" width="24" height="24" alt="Search")
-        input.header__search-input(type="text" placeholder="Search")
+        input.header__search-input(type="text" v-model="search" placeholder="Search")
 </template>
 
 <style lang="scss" scoped>

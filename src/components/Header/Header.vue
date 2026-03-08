@@ -1,5 +1,12 @@
 <script lang="ts" setup>
 import SearchInput from "@/components/SearchInput/SearchInput.vue";
+
+const scrollTo = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+};
 </script>
 
 <template lang="pug">
@@ -9,13 +16,13 @@ import SearchInput from "@/components/SearchInput/SearchInput.vue";
         nav.header__menu
             ul.header__list
                 li.header__item
-                    a.header__link(href="#") Home
+                    a.header__link(@click.prevent="scrollTo('section-home')") Home
                 li.header__item
-                    a.header__link(href="#") Discount
+                    a.header__link(@click.prevent="scrollTo('section-discounts')") Discount
                 li.header__item
-                    a.header__link(href="#") Top Category
+                    a.header__link(@click.prevent="scrollTo('section-category')") Top Category
                 li.header__item
-                    a.header__link(href="#") Best Sales
+                    a.header__link(@click.prevent="scrollTo('section-bestsales')") Best Sales
 
         .header__actions
             SearchInput
@@ -61,6 +68,11 @@ import SearchInput from "@/components/SearchInput/SearchInput.vue";
         font-size: 16px;
         font-weight: 600;
         font-family: 'Palanquin', sans-serif;
+        cursor: pointer;
+
+        &:hover {
+            color: #4B7D11;
+        }
     }
 
     &__actions {

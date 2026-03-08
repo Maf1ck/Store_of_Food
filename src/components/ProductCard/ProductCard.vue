@@ -12,14 +12,21 @@ const props = defineProps<{
 }>();
 
 const formatPrice = (price: number) => {
-    return `$${price.toFixed(2)}`;
-}
+    return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    }).format(price);
+};
+
+const getImageUrl = (name: string) => {
+    return new URL(`../../assets/${name}`, import.meta.url).href;
+};
 </script>
 
 <template lang="pug">
     .product-card
         .product-card__image-wr
-            img.product-card__image(:src="product.image" :alt="product.title")
+            img.product-card__image(:src="getImageUrl(product.image)" :alt="product.title")
         .product-card__info
             .product-card__details
                 h3.product-card__title {{ product.title }}
@@ -28,7 +35,7 @@ const formatPrice = (price: number) => {
                     img.product-card__star(
                         v-for="i in 5" 
                         :key="i" 
-                        :src="i <= product.rating ? '/src/assets/star.svg' : '/src/assets/star_empty.svg'"
+                        :src="i <= product.rating ? getImageUrl('star.svg') : getImageUrl('star_empty.svg')"
                         alt="star"
                     )
             .product-card__actions
@@ -42,94 +49,105 @@ const formatPrice = (price: number) => {
 <style lang="scss" scoped>
 .product-card {
     background: #fff;
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
     cursor: pointer;
-    width: 280px;
+    width: 240px;
 
     &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        transform: translateY(-4px);
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
     }
 
     &__image-wr {
         width: 100%;
-        height: 200px;
+        height: 190px;
         display: flex;
         justify-content: center;
         align-items: center;
         overflow: hidden;
+        background: #fff;
+        border-radius: 12px;
     }
 
     &__image {
-        max-width: 100%;
-        max-height: 100%;
+        width: 100%;
+        height: 100%;
         object-fit: contain;
+        mix-blend-mode: multiply;
     }
 
     &__info {
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
+        gap: 8px;
     }
 
     &__details {
         display: flex;
         flex-direction: column;
-        gap: 5px;
+        gap: 4px;
+        min-width: 0;
     }
 
     &__title {
         font-family: 'Palanquin', sans-serif;
-        font-size: 18px;
+        font-size: 17px;
         font-weight: 500;
-        color: #333;
+        color: #222;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     &__price {
-        font-family: 'Palanquin', sans-serif;
-        font-size: 20px;
-        font-weight: 800;
-        color: #000;
+        font-family: 'Palanquin Dark', sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        color: #111;
     }
 
     &__rating {
         display: flex;
-        gap: 2px;
-        margin-top: 5px;
+        gap: 3px;
+        align-items: center;
+        margin-top: 4px;
     }
 
     &__star {
-        width: 14px;
-        height: 14px;
+        width: 16px;
+        height: 16px;
     }
 
     &__actions {
         display: flex;
         flex-direction: column;
-        gap: 10px;
-        align-items: flex-end;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
     }
 
     &__btn-cart {
-        width: 45px;
-        height: 45px;
+        width: 42px;
+        height: 42px;
         border-radius: 50%;
-        background: #D4E29A; 
+        background: #D4E29A;
         border: none;
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        transition: background 0.3s;
+        transition: background 0.25s, transform 0.2s;
 
         &:hover {
-            background: #c3d67d;
+            background: #bdd47a;
+            transform: scale(1.08);
         }
 
         img {
@@ -142,15 +160,20 @@ const formatPrice = (price: number) => {
         background: none;
         border: none;
         cursor: pointer;
-        padding: 5px;
-        
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.2s, transform 0.2s;
+
         img {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
         }
 
         &:hover {
-            opacity: 0.7;
+            opacity: 0.6;
+            transform: scale(1.1);
         }
     }
 }

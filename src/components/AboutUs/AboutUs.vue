@@ -18,17 +18,16 @@
 
 <style lang="scss" scoped>
 .aboutus{
-    min-height: 100vh;
-    margin-bottom:50px;
     background: linear-gradient(to bottom, #FCFCF7 , #F5EEAD);
     &__content{
         display: flex;
         justify-content: center;
+        align-items: center;
         flex-direction: row;
         max-width: 1200px;
         margin: 0 auto;
-        padding: 200px 50px;
-        gap: 120px;
+        padding: 80px 50px;
+        gap: 80px;
     }
     &__description-wr{
         flex-direction: column;
@@ -63,7 +62,8 @@
         cursor: pointer;
     }
     &__image-wr{
-        height:100vh;
+        display: flex;
+        align-items: center;
     }
     &__image{
         width: 500px;
