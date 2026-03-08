@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue';
-import Toast from '@/components/Toast/Toast.vue';
+import { showToast } from '@/components/Toast/toastStore.js';
 
 const props = defineProps<{
     product: {
@@ -25,17 +25,6 @@ const getImageUrl = (name: string) => {
     return new URL(`../../assets/${name}`, import.meta.url).href;
 };
 
-const toastVisible = ref(false);
-const toastMessage = ref('');
-let toastTimeout: ReturnType<typeof setTimeout>;
-function showToast(message: string) {
-    toastMessage.value = message;
-    toastVisible.value = true;
-    if (toastTimeout) clearTimeout(toastTimeout);
-    toastTimeout = setTimeout(() => {
-        toastVisible.value = false;
-    }, 3000);
-}
 function addToCard(product: any) {
     localStorage.setItem('card', JSON.stringify([...JSON.parse(localStorage.getItem('card') || '[]'), product]));
     showToast(`${product.title} added to cart!`);
@@ -87,9 +76,7 @@ function toggleWishlist(product: any) {
                     @click="toggleWishlist(product)"
                     :class="{ 'product-card__btn-wishlist--active': isInWishlist }"
                 )
-                    img(src="@/assets/heart.svg" alt="Toggle wishlist")
-    
-    Toast(:visible="toastVisible" :message="toastMessage" type="success")
+                    img(:src="isInWishlist ? getImageUrl('heart-red.svg') : getImageUrl('heart.svg')" alt="Toggle wishlist")
 </template>
 
 <style lang="scss" scoped>
@@ -210,14 +197,10 @@ function toggleWishlist(product: any) {
         img {
             width: 18px;
             height: 18px;
-            transition: filter 0.2s;
+            
         }
 
 
-
-        &--active img {
-            filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
-        }
     }
 }
 </style>
