@@ -1,6 +1,8 @@
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue';
-import { showToast } from '@/components/Toast/toastStore';
+import { ref, onMounted,computed } from 'vue';
+import { showToast } from '@/stores/toast.store';
+import { useCardAndWishlistStore } from '@/stores/cardAndWishlist.store';
+import { storeToRefs } from 'pinia';
 
 const props = defineProps<{
     product: {
@@ -12,7 +14,13 @@ const props = defineProps<{
         type?: string;
     }
 }>();
-const isInWishlist = ref(false);
+
+const cardAndWishlistStore = useCardAndWishlistStore();
+const { card, wishlist } = storeToRefs(cardAndWishlistStore);
+
+const isInWishlist = computed(() => {
+    return wishlist.value.some((item: any) => item.id === props.product.id);
+}); 
 
 const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -26,30 +34,16 @@ const getImageUrl = (name: string) => {
 };
 
 function addToCard(product: any) {
-    localStorage.setItem('card', JSON.stringify([...JSON.parse(localStorage.getItem('card') || '[]'), product]));
+    cardAndWishlistStore.addToCard(product);
     showToast(`${product.title} added to cart!`);
 }
 
-onMounted(() => {
-    const list = JSON.parse(localStorage.getItem('wishlist') || '[]');
-    isInWishlist.value = list.some((item: any) => item.id === props.product.id);
-});
-
 function toggleWishlist(product: any) {
-    let list = JSON.parse(localStorage.getItem('wishlist') || '[]');
-    const exists = list.some((item: any) => item.id === product.id);
-
-    if (exists) {
-        list = list.filter((item: any) => item.id !== product.id);
-        localStorage.setItem('wishlist', JSON.stringify(list));
-        isInWishlist.value = false;
-        showToast(`${product.title} removed from wishlist`);
-    } else {
-        list.push(product);
-        localStorage.setItem('wishlist', JSON.stringify(list));
-        isInWishlist.value = true;
-        showToast(`${product.title} added to wishlist!`);
-    }
+    cardAndWishlistStore.toggleWishlist(product);
+    const message = isInWishlist.value 
+        ? `${product.title} added to wishlist!` 
+        : `${product.title} removed from wishlist`;
+    showToast(message);
 }
 
 </script>
